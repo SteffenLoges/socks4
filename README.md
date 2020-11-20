@@ -1,5 +1,5 @@
 # socks4
-A simple socks4 / socks4a implementation for go
+A simple socks4 / socks4a dialer for go with authentication support
 
 
 ## Installation
@@ -25,7 +25,7 @@ func main() {
 
 	protocol := socks4.SOCKS4     // socks4.SOCKS4 or socks4.SOCKS4A
 	proxyAddr := "127.0.0.1:1080" // proxy address with port
-	userID := ""                  // userID string for authentication
+	userID := ""                  // userID string for authentication, leave blank if no authentication is required 
 	timeout := time.Second * 5
 
 	tr := &http.Transport{
@@ -71,8 +71,8 @@ func main() {
 
 	protocol := socks4.SOCKS4     // socks4.SOCKS4 or socks4.SOCKS4A
 	proxyAddr := "127.0.0.1:1080" // proxy address with port
-	userID := ""                  // userID string for authentication
-	timeout := time.Second * 8
+	userID := ""                  // userID string for authentication, leave blank if no authentication is required 
+	timeout := time.Second * 5
 
 	client := &fasthttp.Client{
 		Dial: socks4.FasthttpDialer(protocol, proxyAddr, userID, timeout),

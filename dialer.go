@@ -52,7 +52,6 @@ func dialer(protocol int, proxyAddr, targetAddr, userID string, timeout time.Dur
 		return nil, errors.New("The socks4 protocol doesn't support IPv6")
 	}
 
-	// targetHostIP := net.ParseIP(targetHost)
 	if protocol == SOCKS4 {
 		targetIP, err = resolveHost(targetHost)
 		if err != nil {

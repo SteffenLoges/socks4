@@ -42,7 +42,12 @@ func dialer(protocol int, proxyAddr, targetAddr, userID string, timeout time.Dur
 	}
 
 	// Connect to the proxy
-	conn, err := net.DialTimeout("tcp", proxyAddr, timeout)
+	var conn net.Conn
+	if timeout > 0 {
+		conn, err = net.DialTimeout("tcp", proxyAddr, timeout)
+	} else {
+		conn, err = net.Dial("tcp", proxyAddr)
+	}
 	if err != nil {
 		return nil, err
 	}

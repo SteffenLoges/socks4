@@ -26,7 +26,7 @@ func main() {
 	protocol := socks4.SOCKS4     // socks4.SOCKS4 or socks4.SOCKS4A
 	proxyAddr := "127.0.0.1:1080" // proxy address with port
 	userID := ""                  // userID string for authentication, leave blank if no authentication is required 
-	timeout := time.Second * 5
+	timeout := time.Second * 5    // use 0 to dial without a timeout
 
 	tr := &http.Transport{
 		Dial: socks4.Dialer(protocol, proxyAddr, userID, timeout),
